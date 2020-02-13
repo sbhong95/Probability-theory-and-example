@@ -1,2 +1,2 @@
 # Probability theory and example
- solutions to exercise
+ This is my own solution manual for the book Probability theory and example.
