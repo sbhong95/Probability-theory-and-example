@@ -1,0 +1,237 @@
+\documentclass{report}
+
+\usepackage{makecell}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathrsfs}
+%\usepackage[hangul]{kotex}
+%\usepackage{kotex-logo}
+\usepackage{float}
+\usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm,a4paper]{geometry}
+\usepackage{fancyhdr}
+\usepackage{indentfirst}
+
+
+\newtheorem{ex}{}[section]
+
+
+\makeatletter
+
+\newcommand\frontmatter{%
+    \clearpage
+  \pagenumbering{roman}}
+
+\newcommand\mainmatter{%
+    \clearpage
+  \pagenumbering{arabic}}
+
+\newcommand\backmatter{%
+  \if@openright
+    \cleardoublepage
+  \else
+    \clearpage
+  \fi
+   }
+   
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\footrulewidth}{0.5pt}
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.5pt}
+}
+
+
+
+
+\begin{document}
+\title{Probability Theory and Example}
+\author{}
+\date{\today}
+\maketitle
+
+\frontmatter
+\tableofcontents
+\mainmatter
+
+\chapter{Measure Theory}
+\section{Probability Spaces}
+\begin{ex}
+Let $\Omega = \mathbb{R}, \mathcal{F} =$ all subsets so that $A$ or $A^c$ is countable, $P(A) = 0$ in the first case and = 1 in the second. Show that $(\Omega, \mathcal{F}, P)$ is a probability space.
+\end{ex}
+\begin{proof}[sol]
+i) $\mathcal{F}$ is a $\sigma-$algebra on $\mathbb{R}$.
+
+$\emptyset \in \mathcal{F}$ since $\emptyset$ is countable.
+
+By definition, $\mathcal{F}$ is closed under complementations.
+
+Countable union of countable sets is countable.  Union of countable sets and uncountable sets is uncountable. Thus, $\mathcal{F}$ is closed under countable union. 
+
+ii) $P$ is a probability measure.
+
+$P(\emptyset) = 0$ since $\emptyset$ is countable. By definition, for any set $A$, $P(A) \ge 0$.
+
+Countable union of countable sets is countable.  Union of countable sets and uncountable sets is uncountable. Thus, $P$ has the countable additivity property. 
+
+If $A$ is countable, then $A^c$ is uncountable since $\Omega$ is uncountable. Thus,
+\[P(\Omega) = P(A) + P(A^c) = 1\]
+By (i) and (ii), $(\Omega, \mathcal{F}, P)$ is a probability space.
+\end{proof}
+\begin{ex}
+Recall the definition of $\mathcal{S}_d$ from Example 1.1.5. Show that $\sigma (\mathcal{S}_d) =\mathcal{R}^d$, the Borel subsets of $\mathbb{R}^d$
+\end{ex}
+\begin{proof}[sol]
+i) $d = 1$. In $\mathbb{R}$, any open set can be represented by countable union of open intervals. Thus, we need to show that any open interval can be represented by elements of $\mathcal{S}$. Let $-\infty < a <  b < \infty$.
+\[(a,b) = (-\infty, a]^c \cup (\cup_i(-\infty, b - 1/n])\]
+If $a = -\infty$, then $(a,b)$ can be represented by the second term. If $b =  \infty$, then $(a,b)$ can be represented by the first term. Thus, $\sigma(\mathcal{S}) = \sigma(\mathcal{R}) = \mathcal{R}$.
+
+ii) $d \ge 2$. $\mathcal{S}_d$ is a finite cartesian product of $\mathcal{S}$. Similarly, $\sigma(\mathcal{S}_d) = \sigma(\mathcal{R}_d) = \mathcal{R}_d$.
+\end{proof}
+\begin{ex}
+A $\sigma$-field F is said to be countably generated if there is a countable collection $C \subset F$ so that $\sigma(C) = F$. Show that $\mathcal{R}^d$ is countably generated.
+\end{ex}
+\begin{proof}[sol]
+Let $C$ be the collection that contains all sets of the form
+\[[q_1,\infty)\times \dotsb\times[q_d,\infty), (q_1,\dotsc,q_d) \in \mathbb{Q}^d\]
+Then, $C$ is countable, since it is finite union of countable sets. And $\sigma(C) = \mathcal{R}^d$ as presented by previous exercise.
+\end{proof}
+\begin{ex}
+(i) Show that if $F_1 \subset F_2 \subset \dotsc $ are $\sigma$-algebras, then $\cup_i{F}_i$ is an algebra. (ii) Give an example to show that $\cup_iF_i$ need not be a $\sigma$-algebra.
+\end{ex}
+\begin{proof}[sol]~
+\begin{enumerate}
+    \item[(i)] By definition, $\cup_i F_i$ is not empty.
+    Choose $x \in \cup_i F_i$. Then, there exists $F_x$ such that $x \in F_x$. Therefore, $x^c \in F_x \subset \cup_i F_i$. Thus, $\cup_i F_i$ is closed under complementations.
+    
+    Choose, $x \in F_i, y \in F_j$ and suppose $i\le j$. Then $x \in F_j$. Thus, $x \cup y \in F_j \Rightarrow x \cup y \in \cup_i F_i$.  Thus, $\cup_i F_i$ is closed under union.
+    \item[(ii)] Let $F_i = \sigma(\{\{1\},\{2\},\dotsb,\{n\}\})$. Let $A = \{\{n\} : n = 3k| k = 1,2,3,\dotsb\}$. Then for all $i$, $A \notin F_i$. Thus, $A \not\in \cup_i F_i$. However, $A$ can be represented by countable union. Therefore, $\cup_iF_i$ is not a $\sigma-$algebra.
+\end{enumerate}
+\end{proof}
+\begin{ex}
+A set $A \subset \{1, 2, \dotsc \}$ is said to have asymptotic density $\theta$ if
+\[\lim_{n\to\infty} |A \cap \{1, 2,\dotsb , n\}|/n = \theta\]
+Let $\mathcal{A}$ be the collection of sets for which the asymptotic density exists.
+Is $\mathcal{A}$ a $\sigma$-algebra? an algebra?
+\end{ex}
+\begin{proof}[sol]
+Let $A$ be the set of even numbers. Next, we construct a set $B$ in the following way: we begin with $\{2, 3\}$ and starting with $k = 2$, take all even numbers $2^k < n \le (3/2) \times 2^k$
+, and all odd numbers$(3/2) \times 2^k < n \le 2^{k+1}$. Then, the asymptotic density of $B$ is 0.5. However, the asymptotic density $A\cap B$ does not exists.
+
+When $n = (3/2)\times 2^k$, then the density is 1/3. When $n = 2^{k+1}$, then the density is 1/4.
+
+Thus, $\mathcal{A}$ is not closed under intersection. $\mathcal{A}$ is neither $\sigma-$algebra nor algebra
+\end{proof}
+\section{Distributions}
+\begin{ex}
+Suppose $X$ and $Y$ are random variables on $(\Omega,\mathcal{F}, P)$ and let $A \in \mathcal{F}$. Show that if we let $Z(\omega) = X(\omega)$ for $\omega \in A$ and $Z(\omega) = Y (\omega)$ for $\omega \in A^c$, then $Z$ is a random variable.
+\end{ex}
+\begin{proof}[sol]
+Let the Borel set $B$ which satisfies that
+\[\text{if } \omega \in A, \text{ then } Z(\omega) \in B\]
+For arbitrary Borel set $S$, $S = (S\cap B)\cup (S\cap B^c)$. Since $S$ is Borel set, $\{\omega : X(\omega) \in S\}, \{\omega : Y(\omega) \in S\} \in \mathcal{F}$.
+\begin{align*}
+    \{\omega : Z(\omega) \in S\} &= \{\omega : Z(\omega) \in (S\cap B)\} \cup \{\omega : Z(\omega) \in (S\cap B^c)\}\\
+    &= \{\omega : X(\omega) \in (S\cap B)\} \cup \{\omega : Y(\omega) \in (S\cap B^c)\}
+\end{align*}
+Since $\mathcal{F}$ is closed on set operation, $\{\omega : Z(\omega) \in S\} \in \mathcal{F}$. 
+\end{proof}
+\begin{ex}
+Let $\chi$ have the standard normal distribution. Use Theorem 1.2.6 to get upper and lower bounds on P($\chi \ge $ 4).
+\end{ex}
+\begin{proof}[sol]
+\begin{align*}
+    P(\chi \ge 4) = (2\pi)^{-1}\int_4^\infty \exp(-y^2/2)dy &\le (8\pi)^{-1}\exp(-8)\\
+    (2\pi)^{-1}\int_4^\infty \exp(-y^2/2)dy &\ge (15/128\pi)\exp(-8)
+\end{align*}
+\end{proof}
+\begin{ex}
+Show that a distribution function has at most countably many discontinuities.
+\end{ex}
+\begin{proof}[sol]
+Let $D$ be the set of discontinuity points. Choose $x, y \in D$. Then we can choose rational number $q_x \in (F(x-), F(x+))$. Since $F$ is increasing, if $x\ne y$, then $q_x \ne q_y$. Thus $x \to q_x$ is one-to-one function. Since $\mathbb{Q}$ is countable, $D$ is at most countable.
+\end{proof}
+\begin{ex}
+Show that if $F(x) = P(X \le x)$ is continuous then $Y = F(X)$ has a uniform distribution on (0,1), that is, if $y \in [0, 1]$, $P(Y \le y) = y$.
+\end{ex}
+\begin{proof}[sol]
+\begin{align*}
+    \{\omega | Y(\omega) \le y\} &= \{\omega | F(X(\omega)) \le y\}\\
+    &= \{\omega | X(\omega) \le k\} \quad k = \inf\{x | F(x) \ge y \}\\
+    P(\{\omega | Y(\omega) \le y\}) &= P(\{\omega | X(\omega) \le k\})\\
+    &= P(X \le k) = y
+\end{align*}
+\end{proof}
+\begin{ex}
+Suppose $X$ has continuous density $f$, $P(\alpha \le X \le \beta) = 1$ and $g$ is a function that is strictly increasing and differentiable on $(\alpha, \beta)$. Then $g(X)$ has density $f(g^{-1}(y))/g'(g^{-1}(y))$ for $y \in (g(\alpha), g(\beta))$ and 0 otherwise. When $g(x) = ax + b$ with $a > 0, g^{-1}(y) = (y - b)/a$ so the answer is $(1/a)f((y - b)/a)$.
+\end{ex}
+\begin{ex}
+Suppose $X$ has a normal distribution. Use the previous exercise to compute the density of $\exp(X)$.
+\end{ex}
+\section{Random Variables}
+\begin{ex}
+Show that if $\mathcal{A}$ generates $\mathcal{S}$, then $X^{-1}(A) \equiv \{\{X \in A\} : A \in \mathcal{A}\}$ generates $\sigma(X) = \{\{X \in B\} : B \in \mathcal{S}\}$.
+\end{ex}
+\begin{proof}[sol]
+Let $A_1,A_2,\dotsb \in \mathcal{A}$. Since $\bigcup_i A_i \in \mathcal{S}$,
+\begin{align*}
+    \bigcup_i \{X \in A_i\} = \{X \in \bigcup_i A_i\} \in \sigma(X)
+\end{align*}
+\end{proof}
+\begin{ex}
+Prove Theorem 1.3.6 when $n = 2$ by checking $\{X_1+X_2 < x\} \in \mathcal{F}$.
+\end{ex}
+\begin{proof}[sol]
+\begin{align*}
+    \{X_1+X_2 < x\} = 
+\end{align*}
+\end{proof}
+\begin{ex}
+Show that if $f$ is continuous and $X_n \to X$ almost surely then $f(X_n) \to f(X)$ almost surely.
+\end{ex}
+\begin{proof}[sol]
+Let $\Omega_0 = \{\omega : \lim X_n(\omega) = X(\omega)\}$ and $\Omega_f = \{\omega : \lim f(X_n(\omega)) = f(X(\omega))\}$.
+\begin{align*}
+    \omega \in \Omega_0 &\Rightarrow \lim X_n(\omega) = X(\omega)\\
+    &\Rightarrow \lim f(X_n(\omega)) = f(X(\omega))  \ \ \because f\text{ is continuous}\\
+    &\Rightarrow \omega \in \Omega_f\\
+    &\Rightarrow 1 = P(\Omega_0) \le P(\Omega_f)\le 1
+\end{align*}
+\end{proof}
+\begin{ex}
+(i) Show that a continuous function from $\mathcal{R}^d \to \mathcal{R}$ is a measurable map from ($\mathbb{R}^d,\mathcal{R}^d)$ to $(\mathbb{R},\mathcal{R})$. (ii) Show that $\mathcal{R}^d$ is the smallest $\sigma$-field that makes all the continuous functions measurable.
+\end{ex}
+\begin{proof}[sol]~
+\begin{enumerate}
+    \item[(i)] $\mathcal{R}$ is $\sigma$-field which is generated by all open sets. If $f$ is continuous mapping and image is open, then inverse-image is also open. Thus, $f$ is a measurable map.
+    \item[(ii)] Let $\mathcal{S}$ be the smallest $\sigma-$field that makes all the continuous functions measurable. Since $\mathcal{R}$ is the smallest $\sigma-$field which is generated by all open sets,  $\mathcal{S}$ is generated by all open sets in $\mathbb{R}^d$.
+\end{enumerate}
+\end{proof}
+\begin{ex}
+A function $f$ is said to be lower semicontinuous or l.s.c. if
+\[\liminf_{y\to x} f(y) \ge f(x)\]
+and upper semicontinuous (u.s.c.) if $-f$ is l.s.c.. Show that f is l.s.c. if
+and only if $\{x : f(x) \le a\}$ is closed for each $a \in \mathbb{R}$ and conclude that
+semicontinuous functions are measurable.
+\end{ex}
+\begin{proof}[sol]~
+\begin{enumerate}
+    \item[if]
+    \item[only if]
+\end{enumerate}
+\end{proof}
+\section{Integration}
+\begin{ex}
+Show that if $f \ge 0$ and $\int f d\mu = 0$ then $f = 0$ a.e.
+\end{ex}
+\begin{proof}[sol]
+Let $N$ be the set that satisfies $x \in N \Rightarrow f(x) = 0$.
+\begin{align*}
+    \int f d\mu &=  \int_N f d\mu  + \int_{N^c} f d\mu\\
+    &= \int_{N^c} f d\mu = 0\\
+    &\Rightarrow \mu(N^c) = 0
+\end{align*}
+\end{proof}
+\end{document}
