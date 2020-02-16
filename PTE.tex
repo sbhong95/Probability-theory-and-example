@@ -234,4 +234,55 @@ Let $N$ be the set that satisfies $x \in N \Rightarrow f(x) = 0$.
     &\Rightarrow \mu(N^c) = 0
 \end{align*}
 \end{proof}
+\begin{ex}
+Let $f \ge 0$ and $E_{n,m} = \{x : m/2^n \le f(x) < (m+1)/2^n\}$. As $n \uparrow \infty$,
+\[\sum_{m=1}^\infty \frac{m}{2^n} \mu(E_{n,m}) \uparrow \int f d\mu\]
+\end{ex}
+\begin{proof}[sol]
+Let $f_n = \sum_{m=1}^\infty 1_{E_{n,m}}$. Then, for any n, $f_n < f$. Thus, $\int f d\mu$ is an upper bound of $\int f_n d\mu$. Since $\int f_n d\mu$ is increasing and bounded, it converges. By definition,
+\begin{align*}
+    \int f -f_n d\mu \le \int 1/2^n d\mu \to 0 \text{ as } n \to \infty
+\end{align*}
+Thus, $\int f_n d\mu$ converges to $\int f d\mu$
+\end{proof}
+\begin{ex}
+Let $g$ be an integrable function on $\mathbb{R}$ and $\epsilon > 0$. (i) Use the definition of the integral to conclude there is a simple function $\varphi = \sum_k b_k1_{A_k}$ with $\int |g - \varphi| dx < \epsilon$. (ii) Use Exercise A.2.1 to approximate the $A_k$ by finite unions of intervals to get a step function
+\[q = \sum_{j=1}^k c_j 1_{(a_{j-1}, a_j)}\]
+with $a_0 < a_1 < \dotsb < a_k$, so that $\int |\varphi-q| < \epsilon$. (iii) Round the corners of $q$ to get a continuous function $r$ so that $\int |q - r| dx < epsilon$.
+(iv) To make a continuous function replace each $c_j1_{(a_{j-1},a_j)}$ by a function
+that is 0 $(a_{j-1}, a_j)^c$, $c_j$ on $[a_{j-1} + \delta - j, a_j - \delta_j ]$, and linear otherwise. If the $\delta_j$ are small enough and we let $r(x) = \sum^k_{j=1} r_j(x)$ then
+\[\int |q(x) - r(x)|d\mu = \sum_{j=1}^k \delta_j c_j <\epsilon\]
+\end{ex}
+\begin{ex}
+Prove the Rimann-Legesgue lemma. If $g$ is integrable then
+\[\lim_{n\to\infty} \int g(x) \cos nx dx  = 0\]
+\end{ex}
+\begin{proof}[sol]
+Let $\epsilon$ be any positive number. There is a simple function $\varphi$ satisfies that $g - \varphi < \epsilon$. 
+\end{proof}
+\section{Properties of the integral}
+\begin{ex}
+Let $\|f\|_\infty = \inf\{M : \mu(\{x : |f(x)| > M\}) = 0\}$. Prove that
+\[\int |fg| d\mu \le \|f\|_1\|g\|_\infty\]
+\end{ex}
+\begin{proof}[sol]
+By definition, $g \le \|g\|_\infty$ a.e.. Thus,
+\[\int |fg| d\mu \le \int |f|\|g\|_\infty d\mu = \|g\|_\infty \int|f|d\mu = \|f\|_1\|g\|_\infty\]
+
+\end{proof}
+\begin{ex}
+Show that if $\mu$ is a probability measure then
+\[\|f\|_\infty = \lim_{p\to\infty} \|f\|_p\]
+\end{ex}
+\begin{proof}[sol]
+\end{proof}
+\begin{ex}[Minkowski's inequality]
+(i) Suppose $p \in (1,\infty)$. The inequality $|f+g|^p \le 2^p(|f|^p + |g|^p)$ shows that if $\|f\|^p$ and $\|g\|^p$ are $<\infty$ then $\|f+g\|_p < \infty$. Apply Holder's inequality to$|f||f+g|^{p-1}$ and $|g||f+g|^{p-1}$ to show $\|f+g\|_p \le \|f\|_p + \|g\|_p$ (ii) Show that the last result remains true when $p = 1$ or $p = \infty$
+\end{ex}
+\begin{proof}[sol]~
+\begin{enumerate}
+    \item[(i)] 
+    \item[(ii)] 
+\end{enumerate}
+\end{proof}
 \end{document}
