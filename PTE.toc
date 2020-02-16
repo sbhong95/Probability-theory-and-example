@@ -3,3 +3,4 @@
 \contentsline {section}{\numberline {1.2}Distributions}{2}%
 \contentsline {section}{\numberline {1.3}Random Variables}{3}%
 \contentsline {section}{\numberline {1.4}Integration}{4}%
+\contentsline {section}{\numberline {1.5}Properties of the integral}{5}%
