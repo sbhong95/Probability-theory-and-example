@@ -167,9 +167,23 @@ Show that if $F(x) = P(X \le x)$ is continuous then $Y = F(X)$ has a uniform dis
 \begin{ex}
 Suppose $X$ has continuous density $f$, $P(\alpha \le X \le \beta) = 1$ and $g$ is a function that is strictly increasing and differentiable on $(\alpha, \beta)$. Then $g(X)$ has density $f(g^{-1}(y))/g'(g^{-1}(y))$ for $y \in (g(\alpha), g(\beta))$ and 0 otherwise. When $g(x) = ax + b$ with $a > 0, g^{-1}(y) = (y - b)/a$ so the answer is $(1/a)f((y - b)/a)$.
 \end{ex}
+\begin{proof}[sol]
+Since $g$ is strictly increasing $g^{-1}$ exists.
+\begin{align*}
+    P(g(X) \le y) &= P(X \le g^{-1}(y)) = \int_\alpha^{g^{-1}(y)} f(x)dx\\
+    \frac{d}{dy}P(g(X) \le y) &= f(g^{-1}(y))\frac{d}{dy}g^{-1}(y) = f(g^{-1}(y))/g'(g^{-1}(y))
+\end{align*}
+\end{proof}
 \begin{ex}
 Suppose $X$ has a normal distribution. Use the previous exercise to compute the density of $\exp(X)$.
 \end{ex}
+\begin{proof}[sol]
+Let $g(x) = \exp(x)$. Then $g^{-1}(x) = \log(x)$
+\begin{align*}
+    f(g^{-1}(x))/g'(g^{-1}(x)) &= f(\log(x))/\exp(\log(x))\\
+    &= f(\log(x))/x = \frac{1}{x\sqrt{2\pi}}\exp(-\log(x)^2/2), \ x > 0
+\end{align*}
+\end{proof}
 \section{Random Variables}
 \begin{ex}
 Show that if $\mathcal{A}$ generates $\mathcal{S}$, then $X^{-1}(A) \equiv \{\{X \in A\} : A \in \mathcal{A}\}$ generates $\sigma(X) = \{\{X \in B\} : B \in \mathcal{S}\}$.
@@ -185,8 +199,9 @@ Prove Theorem 1.3.6 when $n = 2$ by checking $\{X_1+X_2 < x\} \in \mathcal{F}$.
 \end{ex}
 \begin{proof}[sol]
 \begin{align*}
-    \{X_1+X_2 < x\} = 
+    \{X_1+X_2 < x\} = \bigcup_{q \in \mathbb{Q}} \{X_1 < q\}\times \{X_2 < x-q\}
 \end{align*}
+Both $\{X_1 < q\}$ and $\{X_2 < x-q\}$ are open sets. Thus, $\{X_1+X_2 < x\} \in \mathcal{R}^2$ since it is represented by countable union.
 \end{proof}
 \begin{ex}
 Show that if $f$ is continuous and $X_n \to X$ almost surely then $f(X_n) \to f(X)$ almost surely.
@@ -217,9 +232,14 @@ and only if $\{x : f(x) \le a\}$ is closed for each $a \in \mathbb{R}$ and concl
 semicontinuous functions are measurable.
 \end{ex}
 \begin{proof}[sol]~
+Define $E_a := \{x : f(x) \le a\}$
 \begin{enumerate}
-    \item[if]
-    \item[only if]
+    \item[if] Choose $x$. Let $a = \liminf_{y\to x}{f(y)}$. Then, by definition, $a \le f(x)$.
+    There is the sequence $\{x_n\}$ such that $x_n \to x, f(x_n) \to a$ as $n \to \infty$
+    For any $b > a$, there exists $N_b$ such that for all $n > N_b$, $x_n \in E_b$. Since $E_b$ is closed, the limit point $x \in E_b$ for all $b > a$. Thus, $x \in E_a$. Since $f(x) \ge a$ and $f(x) \le a$, $f(x) = a = \liminf_{y\to x} f(y)$. 
+    \item[only if] Construct a sequence $\{x_n\}$ in $E_a$ which converges to $x$. Since $f$ is l.s.c
+    \[f(x) \le \liminf_{y\to x} f(y) \le a\]
+    Thus, $x \in E_a$. Since an arbitrary limit point is in $E_a$, $E_a$ is closed.
 \end{enumerate}
 \end{proof}
 \section{Integration}
@@ -258,7 +278,8 @@ Prove the Rimann-Legesgue lemma. If $g$ is integrable then
 \[\lim_{n\to\infty} \int g(x) \cos nx dx  = 0\]
 \end{ex}
 \begin{proof}[sol]
-Let $\epsilon$ be any positive number. There is a simple function $\varphi$ satisfies that $g - \varphi < \epsilon$. 
+Let $\epsilon$ be any positive number. There is a simple function $\varphi$ satisfies that $\int|g - \varphi|dx < \epsilon$. For all constant $c$, $\lim_{n\to\infty}\int c\cos(nx)dx = 0$. Thus, $\lim_{n\to\infty}\int \varphi(x)\cos(nx)dx = 0$.Then, since $|\cos(nx)| \le 1$,
+\[-\epsilon < \lim_{n\to\infty}\int g(x)\cos(nx)dx <\epsilon\]
 \end{proof}
 \section{Properties of the integral}
 \begin{ex}
@@ -268,21 +289,71 @@ Let $\|f\|_\infty = \inf\{M : \mu(\{x : |f(x)| > M\}) = 0\}$. Prove that
 \begin{proof}[sol]
 By definition, $g \le \|g\|_\infty$ a.e.. Thus,
 \[\int |fg| d\mu \le \int |f|\|g\|_\infty d\mu = \|g\|_\infty \int|f|d\mu = \|f\|_1\|g\|_\infty\]
-
 \end{proof}
 \begin{ex}
 Show that if $\mu$ is a probability measure then
 \[\|f\|_\infty = \lim_{p\to\infty} \|f\|_p\]
 \end{ex}
 \begin{proof}[sol]
+Since $\mu$ is a probability measure, $\mu(\Omega) = 1$.
+Suppose two positive numbers, $n < m$. Let $\varphi(x) := x^{m/n}$ By Jensen's inequality,
+\[\|f\|_n^m = \varphi(\int |f|^nd\mu) \le \int \varphi(|f|^n)d\mu  = \|f\|_m^m\]
+Thus, $\{\|f\|_n\}$ is an increasing sequence.
+\[\|f\|_n^n = \int |f|^nd\mu \le \int (\|f\|_\infty^n)d\mu  = \|f\|_\infty^n\]
+Thus, $\|f\|_\infty$ is an upper bound. Therefore, the sequence converges and $\lim_{p\to\infty} \|f\|_p \le\|f\|_\infty$.
+
+Let $\epsilon$ be the arbitrary number between 0 and $\|f\|_\infty$. Then, there exist a set $M$ such that $|f| > \|f\|_\infty - \epsilon$ for all $x \in M$.
+\begin{align*}
+    \int |f|^p d\mu &\ge \int_M |f|^p d\mu \ge (\|f\|_\infty - \epsilon)^p\mu(M)\\
+    \Rightarrow \|f\|_p &\ge (\|f\|_\infty - \epsilon)\mu(M)^{1/p}\\
+    \Rightarrow \lim_{p\to\infty} \|f\|_p &\ge \|f\|_\infty - \epsilon\\
+    \Rightarrow \lim_{p\to\infty} \|f\|_p &\ge \|f\|
+\end{align*}
+Thus, the sequences converges to $\|f\|_\infty$.
 \end{proof}
 \begin{ex}[Minkowski's inequality]
-(i) Suppose $p \in (1,\infty)$. The inequality $|f+g|^p \le 2^p(|f|^p + |g|^p)$ shows that if $\|f\|^p$ and $\|g\|^p$ are $<\infty$ then $\|f+g\|_p < \infty$. Apply Holder's inequality to$|f||f+g|^{p-1}$ and $|g||f+g|^{p-1}$ to show $\|f+g\|_p \le \|f\|_p + \|g\|_p$ (ii) Show that the last result remains true when $p = 1$ or $p = \infty$
+(i) Suppose $p \in (1,\infty)$. The inequality $|f+g|^p \le 2^p(|f|^p + |g|^p)$ shows that if $\|f\|^p$ and $\|g\|^p$ are $<\infty$ then $\|f+g\|_p < \infty$. Apply Holder's inequality to $|f||f+g|^{p-1}$ and $|g||f+g|^{p-1}$ to show $\|f+g\|_p \le \|f\|_p + \|g\|_p$ (ii) Show that the last result remains true when $p = 1$ or $p = \infty$
 \end{ex}
 \begin{proof}[sol]~
 \begin{enumerate}
-    \item[(i)] 
-    \item[(ii)] 
+    \item[(i)] By Holder's inequality,
+    \begin{align*}
+    \int |f||f+g|^{p-1}d\mu &\le \|f\|_p\|(f+g)^{p-1}\|_{p/(p-1)}\\
+    &= (\int |f|^pd\mu)^{1/p}(\int |f+g|^pd\mu)^{(p-1)/p}\\
+    \text{Similarly, }\int |g||f+g|^{p-1}d\mu &\le (\int |g|^pd\mu)^{1/p}(\int |f+g|^pd\mu)^{(p-1)/p}\\
+    \int |f+g|^pd\mu &= \int (|f|+|g|)|f+g|^{p-1}d\mu \le (\|f\|_p+\|g\|_p)\|f+g\|_p^{p-1}\\
+    \Rightarrow \|f+g\|_p &\le(\|f\|_p+\|g\|_p)
+    \end{align*}
+    \item[(ii)] When $p = 1$, it is trivial.
+    
+    Let the set $E = \{M: \mu(\{x : |f(x)+g(x)| > M\}) = 0\}$. By triangle inequality,
+    \[|f+g| \le |f| + |g| \le \|f\|_\infty +\|g\|_\infty \ a.e.\]
+    Thus,
+    \begin{align*}
+        \mu(\{x : |f(x)+g(x)| > \|f\|_\infty + \|g\|_\infty\}) = 0
+    \end{align*}
+    Since $\|f\|_\infty +\|g\|_\infty\in E$, $\|f\|_\infty +\|g\|_\infty \ge \inf E =\|f+g\|_\infty$
 \end{enumerate}
+\end{proof}
+\begin{ex}
+If $f$ is integrable and $E_m$ are disjoint sets with union $E$ then
+\[\sum_{m=0}^\infty \int_{E_m} f d\mu = \int_E fd\mu\]
+So if $f \ge 0$, then $\nu(E) = \int_E fd\mu$ defines a measure.
+\end{ex}
+\begin{proof}[sol]~
+If $E = \emptyset$, $\mu(E) = 0$. Since $f \ge 0$, for any set $E$, $\nu(E) \ge \nu(\emptyset) = 0$.
+
+If $E_i$ are disjoint sets, then
+\[\mu(\cup_i E_i) = \int_{\cup_i E_i} fd\mu = \sum_i\int_{E_i}fd\mu = \sum_i \nu(E_i)\]
+
+Thus, $\nu$ is a measure.
+\end{proof}
+\begin{ex}
+If $g_n \uparrow g$ and $\int g_1 d\mu < \infty$ then $\int g_n d\mu \uparrow \int gd\mu$.
+\end{ex}
+\begin{proof}[sol]
+Since $g_n \uparrow g$, $\limsup_{n\to\infty}\int g_nd\mu \le \int gd\mu$.
+
+
 \end{proof}
 \end{document}
