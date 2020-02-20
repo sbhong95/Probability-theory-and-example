@@ -47,13 +47,10 @@
 
 
 \begin{document}
-\title{Probability Theory and Example}
-\author{}
-\date{\today}
-\maketitle
+
 
 \frontmatter
-\tableofcontents
+
 \mainmatter
 
 \chapter{Measure Theory}
@@ -274,12 +271,11 @@ that is 0 $(a_{j-1}, a_j)^c$, $c_j$ on $[a_{j-1} + \delta - j, a_j - \delta_j ]$
 \[\int |q(x) - r(x)|d\mu = \sum_{j=1}^k \delta_j c_j <\epsilon\]
 \end{ex}
 \begin{ex}
-Prove the Rimann-Legesgue lemma. If $g$ is integrable then
+Prove the Rimann-Lebesgue lemma. If $g$ is integrable then
 \[\lim_{n\to\infty} \int g(x) \cos nx dx  = 0\]
 \end{ex}
 \begin{proof}[sol]
-Let $\epsilon$ be any positive number. There is a simple function $\varphi$ satisfies that $\int|g - \varphi|dx < \epsilon$. For all constant $c$, $\lim_{n\to\infty}\int c\cos(nx)dx = 0$. Thus, $\lim_{n\to\infty}\int \varphi(x)\cos(nx)dx = 0$.Then, since $|\cos(nx)| \le 1$,
-\[-\epsilon < \lim_{n\to\infty}\int g(x)\cos(nx)dx <\epsilon\]
+Let $\epsilon$ be any positive number. 
 \end{proof}
 \section{Properties of the integral}
 \begin{ex}
@@ -349,11 +345,64 @@ If $E_i$ are disjoint sets, then
 Thus, $\nu$ is a measure.
 \end{proof}
 \begin{ex}
-If $g_n \uparrow g$ and $\int g_1 d\mu < \infty$ then $\int g_n d\mu \uparrow \int gd\mu$.
+If $g_n \uparrow g$ and $\int g_1^- d\mu < \infty$ then $\int g_n d\mu \uparrow \int gd\mu$.
 \end{ex}
 \begin{proof}[sol]
-Since $g_n \uparrow g$, $\limsup_{n\to\infty}\int g_nd\mu \le \int gd\mu$.
-
-
+Since $g_n = g_n^+ - g_n^-$ and $g_n \uparrow g$, $g_n^+ \uparrow g^+$ and $g_n^- \downarrow g^-$. By monotone convergence theorem, $\int g_n^+d\mu \uparrow \int g^+d\mu$. Since $g_1^-$ is integrable, by dominated convergence theorem, $\int g_n^-d\mu\to \int g^-d\mu$. Thus, $-\int g_n^-d\mu\uparrow -\int g^-d\mu$.
+\[\therefore \int g_nd\mu = \int g_n^+ - g_n^- d\mu \uparrow \int gd\mu\]
 \end{proof}
+\begin{ex}
+If $g_m \ge 0$ then $\int \sum_{m=0}^\infty g_m d\mu = \sum_{m=0}^\infty \int g_m d\mu$.
+\end{ex}
+\begin{proof}[sol]
+Define $f_n := \sum_{m=0}^n g_m$ and $f := \sum_{m=0}^\infty g_m$. Then $f_n \uparrow f$. By result of using previous example, $\int f_nd\mu \uparrow \int fd\mu$. Thus,
+\begin{align*}
+    \int \sum_{m=0}^\infty g_m d\mu &=\int \lim_{n\to\infty}f_nd\mu\\
+    &= \int fd\mu\\
+    &= \int \sum_{m=0}^\infty g_md\mu
+\end{align*}
+\end{proof}
+\begin{ex}
+Let $f \ge 0$. (i) Show that $\int f \land n \ d\mu \uparrow \int fd\mu$ as $n\to\infty$. (ii) Use (i) to conclude that if $g$ is integrable and $\epsilon > 0$ then we can pick $\delta > 0$ so that $\mu(A) < \delta$ implies $\int_A |g|d\mu < \epsilon$.
+\end{ex}
+\begin{proof}[sol]~
+\begin{enumerate}
+    \item[(i)] 
+Define $E_n := \{x : f(x) > n\}$. Then, for $n \le m$
+\begin{align*}
+   f \land m -  f \land n = (f-n) 1_{E_n \cap E_m^c} + (m-n)1_{E_m} \ge 0\\
+   \lim_{n\to\infty} f \land n = f
+\end{align*}
+By definition $f_n \ge 0$. Thus, by monotone convergence theorem, $\int f \land n \ d\mu \uparrow \int fd\mu$.
+\item[(ii)] 
+\end{enumerate}
+\end{proof}
+\begin{ex}
+Show that if $f$ is integrable on $[a,b]$, $g(x) = \int_{[a,x]}f(y)dy$ is continuous on $(a,b)$.
+\end{ex}
+\begin{proof}[sol]
+Since $f$ is integrable, there exists a positive number $M$ such that $|f| < M$. For $s,t \in (a,b), s\le t$
+\begin{align*}
+-M(t-s) < g(t) - g(s) &= \int^t_s f(y)dy < M(t-s)\\
+\Rightarrow |g(t) - g(s)| &< M(t-s)
+\end{align*}
+Thus, $g$ is Lipschitz continuous. Thus, $g$ is continuous.
+\end{proof}
+\begin{ex}
+Show that if $f$ has $\|f\|_p = (\int |f|^pd\mu)^{1/p} < \infty$, then there are simple functions $\varphi_n$ so that $\|\varphi_n - f\|_p \to 0$.
+\end{ex}
+\begin{proof}[sol]
+For $f$, we can construct sequence of step functions $\{\varphi_n\}$ such that $\varphi_n \uparrow |f|$. By triangle inequailty, $|f - \varphi_n| \le |f| + |\varphi_n|$. Thus, for all $n$
+\begin{align*}
+    |f - \varphi_n|^p \le (|f| + |\varphi_n|)^p \le (2|f|)^p
+\end{align*}
+By dominated convergence theorem,
+\begin{align*}
+    \lim_{n\to\infty}\int |f - \varphi_n|^p &= \int \lim_{n\to\infty}|f - \varphi_n|^p = 0\\
+    \Rightarrow \|f - \varphi_n\|_p &= 0
+\end{align*}
+\end{proof}
+\begin{ex}
+Show that if $\sum_n \int |f_n|d\mu < \infty$, then $\sum_n \int f_n d\mu = \int \sum_n f_n d\mu$.
+\end{ex}
 \end{document}
