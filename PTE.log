@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.1.5)  28 FEB 2020 23:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/W32TeX) (preloaded format=pdflatex 2020.1.5)  8 MAR 2020 23:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -226,58 +226,83 @@ LaTeX Font Info:    ... okay on input line 49.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Chapter 1.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 59.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 53.
 
 (c:/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 59.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 53.
 
 
 (c:/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 59
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 53
 .
 
 (c:/texlive/2019/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ) [1
 
+{c:/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] (./PTE.toc)
+\tf@toc=\write3
+\openout3 = `PTE.toc'.
+
+ [1
 
 
+]
+Chapter 1.
+[1
 
-{c:/texlive/2019/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5]
- [6] [7] [8]
-[9] [10] [11] [12] (./PTE.aux) ) 
+
+] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15]
+Chapter 2.
+[16
+
+] [17]
+Overfull \hbox (5.40741pt too wide) in paragraph at lines 871--873
+\OML/cmm/m/it/10 m; p$\OT1/cmr/m/it/10 ). (ii) Look at Ex-am-ple 1.6.12 and use
+ in-duc-tion to con-clude that the sum of $\OML/cmm/m/it/10 n$ \OT1/cmr/m/it/10
+ in-de-pen-dent Bernoulli($\OML/cmm/m/it/10 p$\OT1/cmr/m/it/10 )
+ []
+
+[18] [19] [20] [21] [22]
+! Undefined control sequence.
+l.1119 $\sum p_n < \infty \Rightarriw
+                                     $ for some $N$, $p_n = 0$ if $n > N$. T...
+
+? 
+[23] (./PTE.aux) ) 
 Here is how much of TeX's memory you used:
- 2435 strings out of 492163
- 28920 string characters out of 6129077
- 108673 words of memory out of 5000000
- 6799 multiletter control sequences out of 15000+600000
- 8006 words of font info for 32 fonts, out of 8000000 for 9000
+ 2474 strings out of 492163
+ 29333 string characters out of 6129077
+ 109673 words of memory out of 5000000
+ 6826 multiletter control sequences out of 15000+600000
+ 14441 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 30i,11n,45p,387b,378s stack positions out of 5000i,500n,10000p,200000b,80000s
-<c:/texlive/2019/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmbx10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmbx12.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10
-.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/
-texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/20
-19/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2019/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2019/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2019/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr7.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/
-cm/cmsy10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.
-pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/te
-xlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb><c:/texlive/201
-9/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2019/te
-xmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2019/texmf-
-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on PTE.pdf (12 pages, 223176 bytes).
+ 30i,12n,45p,579b,378s stack positions out of 5000i,500n,10000p,200000b,80000s
+<c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+bx10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb>
+<c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texli
+ve/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2019/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2019/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2019/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr12.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmr17.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb>
+<c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive
+/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2019/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2019/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2019/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmti10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/am
+sfonts/symbols/msam10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfon
+ts/symbols/msbm10.pfb><c:/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/s
+ymbols/msbm7.pfb>
+Output written on PTE.pdf (25 pages, 290440 bytes).
 PDF statistics:
- 107 PDF objects out of 1000 (max. 8388607)
- 76 compressed objects within 1 object stream
+ 158 PDF objects out of 1000 (max. 8388607)
+ 111 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
