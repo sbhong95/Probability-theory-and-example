@@ -11,5 +11,6 @@ Progress
 
 Undone exercises
 
-- 1.7.5, 2.2.8, 2.2.9 - 2020/05/24
+- Chapter 1 Section 7 : 5
+- Chapter 2 Section 2 : 8,9
 
