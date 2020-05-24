@@ -9,9 +9,25 @@
 \usepackage[left=2.5cm,right=2.5cm,top=3cm,bottom=3cm,a4paper]{geometry}
 \usepackage{fancyhdr}
 \usepackage{indentfirst}
+\usepackage{bookmark}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    pdftitle={Sharelatex Example},
+    bookmarks=true
+}
+\bookmarksetup{
+  numbered, 
+  open,
+}
 
 
 \newtheorem{ex}{}[section]
+\newcommand{\N}{\mathbb N}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
 
 
 \makeatletter
@@ -50,9 +66,11 @@
 \title{Probability Theory and Example Solution Manual}
 \author{}
 \date{\today}
+\frontmatter
 \maketitle
 
-\frontmatter
+
+\pdfbookmark[section]{\contentsname}{toc}
 \tableofcontents
 \mainmatter
 
@@ -841,10 +859,14 @@ Let $K \ge 3$ be a prime and let $X$ and $Y$ be independent random variables tha
 Find four random variables taking values in $\{-1, 1\}$ so that any three are independent but all four are not.
 \end{ex}
 \begin{proof}[sol]
+ Let $X_1,X_2,X_3,X_4$ be independent random variables with $P(X_i = 1) = P(X_i = -1) = 1/2$. Define $Y_1 = X_1X_2, Y_2 = X_2X_3, Y_3 = X_3X_4, Y_4 = X_4X_1$. Then $Y_1Y_2Y_3Y_4  = 1$. Thus all four random variables are not independent. However, all three random variables are independent.
 \end{proof}
 \begin{ex}
 Let $\Omega = \{1,2,3,4\}$, $\mathcal{F} = $ all subsets of $\Omega$, and $P(\{i\}) = 1/4$. Give an example of two collections of sets $\mathcal{A}_1$ and $\mathcal{A}_2$ that are independent but whose generated $\sigma$-fields are not 
 \end{ex}
+\begin{proof}[sol]~
+Let $\mathcal{A}_1 = \{\{1,2\}\}, \mathcal{A}_2 = \{\{1,3\}, \{1,4\}\}$/
+\end{proof}
 \begin{ex}
 Show that if $X$ and $Y$ are independent, integer-valued random variables, then
 \[P(X + Y = n) = \sum_m P(X = m)P(Y = n-m)\]
@@ -904,7 +926,17 @@ It should not be surprising that the distribution of $X+Y$ can be $F*G$ without 
         P(X+Y = 3) &=\sum_{i\in\{1,2\}} P(\{X = i\}\cap\{Y = 3-i\})= \sum_i P(\{X = i\})P(\{Y = 3-i\}) = 2/9\\
         P(X+Y = 4) &= P(\{X = 2\}\cap\{Y = 2\}) P(\{X = 2\})P(\{Y = 2\}) = 1/9
         \end{align*}
-    \item[(b)]
+    \item[(b)] Let $P(X = 0, Y = 1) := p$. Use sum of each column and row is 1/3.
+    
+    \begin{table}[h]
+    \centering
+	\begin{tabular}{c|ccc}
+	 $X, Y$& 0 & 1 & 2 \\ \hline
+	 0&  1/9&  p& 2/9 - p \\
+	 1& 2/9 - p &  1/9 &  p\\
+	 2&  p& 2/9 - p &1/9 
+	\end{tabular}
+	\end{table}
 \end{enumerate}
 \end{proof}
 \begin{ex}
@@ -918,11 +950,17 @@ Let $H$ be the distribution function of $XY$.
     &=\int_0^\infty\int_{0}^{z/y}1dFdG\\
     &=\int_0^\infty F(z/y)dG
 \end{align*}
-
 \end{proof}
 \begin{ex}
 If we want an infinite sequence of coin tossings, we do not have to use Kolmogorov's theorem. Leg $\Omega$ be the unit interval $(0,1)$ equipped with the Borel sets $\mathcal{F}$ and Lebesgue measure $P$. Let $Y_n(\omega) = 1$ if $[2^n\omega]$ is odd and 0 if $[2^n\omega]$ is even. Show that $Y_1,Y_2,...$ are independent with $P(Y_k = 0) = P(Y_k= 1) = 1/2$.
 \end{ex}
+\begin{proof}[sol]
+Let $i_n \in \{0,1\}, n \in\N$. Define $x = \sum_{j =1}^m i_j2^{-j}$. It is trivial that for each $j$, $P(Y_j = 1) = P(Y_j = 0) = 1/2$. For arbitrary $m \in \N$
+\begin{align*}
+	P(Y_1 = i_1,...,Y_m = i_m) = P(\omega \in [x, x + 2^{-m})) = 2^{-m}
+\end{align*}
+Therefore,  $Y_1,Y_2,...$ are independent 
+\end{proof}
 \section{Weak Laws of Large Numbers}
 \begin{ex}
 Let $X_1,X_2,...$ be uncorrelated with $EX_i = \mu_i$ and $var(X_i)/i \to 0$ as $i \to \infty$. Let $S_n = X_1+\dotsb +X_n$ and $\nu_n = ES_n /n$ then as $n\to\infty$, $S_n/n - \nu_n \to 0$ in $L^2$ and in probability.
@@ -1009,8 +1047,15 @@ Thus,
     &=\int_e^n e/x\log xdx = e\log\log n
 \end{align*}
 \end{proof}
-\begin{ex}
+\begin{ex}(i) Show that if $X\ge 0$ is integer valued $EX = \sum_{n\ge 1}P(X\ge n)$. (ii) Find a similar expression for $EX^2$.
 \end{ex}
+\begin{proof}[sol]
+$X$ is interger valued variable.
+\begin{align*}
+	X &= \sum_{i=1}^\infty I(X \ge n) \Rightarrow EX = \sum_{i=1}^\infty P(X \ge n)\\
+	X^2 &=  \sum_{i=1}^\infty (2n-1)I(X \ge n) \Rightarrow EX^2 = \sum_{i=1}^\infty (2n-1)P(X \ge n)
+\end{align*}
+\end{proof}
 \begin{ex}
 Generalize Lemma 2.2.13 to conclude that if $H(x) = \int_{(-\infty, x]} h(y)dy$ with $h(y) \ge 0$, then
 \[EH(X) = \int_{-\infty}^\infty h(y)P(X \ge y)dy\]
@@ -1023,27 +1068,52 @@ An important special case is $H(x) = \exp (\theta x)$ with $\theta >0$.
     &= \int h(y)P(X \ge y)dy
 \end{align*}
 \end{proof}
+\begin{ex}[An unfair ``fair game''] Let $p_k  = 1/2^kk(k+1), k = 1,2,...$ and $p_0 = 1 -\sum_{k\ge 1}p_k$.
+\[\sum_{k=1}^\infty 2^kp_k = (1 - 1/2) + (1/2 - 1/3) + \dotsb = 1\]
+so if we let $X=1,X_2,...$ be i.i.d. with $P(X_n = -1) = p_0$ and 
+\[P(X_n = 2^k - 1) = p_k\ \text{for} \ k \ge 1\]
+then $EX_n = 0$. Let $S_n = X_1 + \dotsb + X_n$. Use Theorem 2.2.11 with $b_n = 2^{m(n)}$ where m(n) = $\min\{m : 2^{-m} m^{-3/2} \le n^{-1}\}$ to conclude that 
+\[S_n/(n/\log_2 n) \to -1 \text{ in probability}\]
+\end{ex}
+\begin{proof}[sol]
+\end{proof}
+\begin{ex}[Weak law for positive variables] Suppose $X_1,X_2,...$ are i.i.d., $P(0\le X_i < \infty) = 1$ and $P(X_i > x) > 0$ for all $x$. Let $\mu(s) = \int_0^s xdF(x)$ and $\nu(s) = \mu(s)/s(1 -F(s))$. It is known that there exist constatns $a_n$ so that $S_n/a_n \to 1$ in probability, if and only if $\nu(s) \to\infty$ as $s \to \infty$. Pick $b_n \ge 1$ so that $n\mu(b_n) = b_n$ (this works for large $n$), and use Theorem 2.2.11 to prove that the condition is sufficient.
+\end{ex}
+\begin{proof}[sol]
+\end{proof}
 \section{Borel-Cantelli Lemmas}
 \begin{ex}
 Prove that $P(\limsup A_n) \ge \limsup P(A_n)$ and $P(\liminf A_n) \le \liminf P(A_n)$.
 \end{ex}
 \begin{proof}[sol]
+$\liminf A_n = \bigcup_{n\ge 1}\bigcap_{k \ge n}A_k$ and $\limsup A_n = \bigcap_{n\ge 1}\bigcup_{k \ge n}A_k$
+\begin{align*}
+P(\liminf A_n) &= \lim P(\cap_{k \ge n}A_k) = \liminf P(\cap_{k \ge n}A_k) \le \liminf P(A_n)\\
+P(\limsup A_n) &= \lim P(\cup_{k \ge n}A_k) = \limsup P(\cup_{k \ge n}A_k) \ge \limsup P(A_n)
+\end{align*}
 \end{proof}
 \begin{ex}
+Prove the first result in Theorem 2.3.4 directly from the definition.
 \end{ex}
+\begin{proof}[sol]
+For arbitrary $\varepsilon > 0$, there exists $\delta > 0$ which implies
+\[|X_n - X| < \delta \Rightarrow |f(X_n) - f(X)| < \varepsilon\]
+Thus, $X_n \to X$ in probability implies $f(X_n) \to f(X)$ in probability.
+\end{proof}
 \begin{ex}
+Let $\ell_n$ be the length of the head run at time. See Example 8.3.1. for the precise definition. Show that $\limsup_{n\to\infty} \ell_n /\log_2 n = 1$, $\liminf_{n\to\infty} \ell_n = 0$ a.s.
 \end{ex}
 \begin{ex}[Fatou's lemma]
 Suppose $X_n \ge 0$ and $X_n \to X$ in probability. Show that $\liminf_{n\to\infty} EX_n \ge EX$.
 \end{ex}
 \begin{proof}[sol]
 Pick a subsequence $X_{n(m)}$ which satisfies that
-\[\lim EX_{n(m)} \to \liminf_{n\to\infty} EX_n \]
+\[\lim_{m\to\infty} EX_{n(m)} = \liminf_{n\to\infty} EX_n \]
 Since $X_n$ converges in probability, we can find a further subsequence $X_{n(m_k)}$ such that $X_{n(m_k)} \to X$ a.s.
 
 If we apply Fatou's lemma,
-\[EX \le \liminf_{k\to\infty} X_{n(m_k)} \le \liminf_{n\to\infty} EX_n\]
-Equality holds since $X_n$ converges.
+\[EX \le \liminf_{k\to\infty} EX_{n(m_k)} \le \liminf_{n\to\infty} EX_n\]
+
 \end{proof}
 \begin{ex}[Dominated convergence]
 Suppose $X_n \to X$ in probability and (a) $|X_n| \le Y$ with $EY < \infty $ or (b) there is a continuous function $g$ with $g(x) > 0$ for large $x$ with $|x|/g(x) \to 0$ as $|x| \to \infty$ so that $Eg(X_n) \le C < \infty $ for all $n$. Show that $EX_n \to EX$.
@@ -1072,24 +1142,28 @@ Show (a) that $d(X,Y) = E(|X-Y|/(1+|X-Y|))$ defines a metric on the set of rando
 ($\Rightarrow$)
 For given $\epsilon > 0$,
 \begin{align*}
-P(|X_n - X| < \epsilon) = P(|X_n-X|/(1+|X_n-X|) < \epsilon/(1+\epsilon)) < d(X_n,X) (1+\epsilon)/\epsilon
+P(|X_n - X| > \epsilon) &= P(|X_n-X|/(1+|X_n-X|) > \epsilon/(1+\epsilon))\\
+ &< d(X_n,X) (1+\epsilon)/\epsilon \to 0 \quad \because \text{ Chebychev}
 \end{align*}
 Thus, $X_n \to X$ in probability.
 
 ($\Leftarrow$)
-$X_n \to X$ in probability implies $\lim X_n = X$ and $|d(\cdot, \cdot)| \le 1 $. Thus, $d(X_n,X) \to d(X,X) = 0$.
+$X_n \to X$ in probability and $|d(\cdot, \cdot)| \le 1 $. Thus, $d(X_n,X) \to d(X,X) = 0$ by DCT.
 \end{enumerate}
 \end{proof}
 \begin{ex}
 Show that random variables are a complete space under the metric defined in the previous exercise, i.e., if $d(X_m, X_n) \to 0$ whenever $m,n \to \infty$ then there is a r.v. $X_\infty$ so that $X_n \to X_\infty$ in probability.
 \end{ex}
 \begin{proof}[sol]
+Choose $N_k$ so that if $n,m \ge N_k$, then $d(X_n, X_m) \le 2^{-k}$. Pick a subsequence $\{X_{n_k}\}$ which satisfies $n_k > N_k$. Then
+\[P(|X_{n_{k+1}} - X_{n_k}| > k^{-2}) \le d(X_{n_{k+1}}, X_{n_k}) \frac{1 + k^{-2}}{k^{-2}} \le 2^{-k}(1+ k^2)\]
+The last term is summable so by the Borel Cantelli Lemma, $\limsup P(|X_{n_{k+1}} - X_{n_k}| > k^{-2}) = 0$. Thus, there exists $X$ such that $X_{n_k} \to X$ in probability. Let $X'$ be the limit of another subsequence. By the Cauchy assumption, $d(X_{n_k}, X_{m_k}) \to 0$. The metric is defined as expection. By exercise 2.3.4, $d(X, X') = 0$. Thus the random variable exists.
 \end{proof}
 \begin{ex}
 Let $A_n$ be a sequence of independent events with $P(A_n) < 1$ for all $n$. Show that $P(\cup A_n) = 1$ implies $\sum_n P(A_n) = \infty$ and hence $P(A_n \ i.o.) = 1$.
 \end{ex}
 \begin{proof}[sol]
-By second B-C Lemma, it is sufficient to show that $P(\cup A_n) = 1$ implies $\sum_n P(A_n) = \infty$.
+By second Borel Cantelli Lemma, it is sufficient to show that $P(\cup A_n) = 1$ implies $\sum_n P(A_n) = \infty$.
 
 Suppose $\sum_n P(A_i)$ is finite. Thus, for some $N$, $P(A_n) = 0$ if $n > N$.
 \begin{align*}
@@ -1099,9 +1173,30 @@ P(\cup A_n) = 1 &\Rightarrow P(\cap A_n^c) = 0\\
 However, $\prod_n [1 - P(A_n)] $ converges to $\prod^N_{n=1} [1 - P(A_n)] > 0$. Thus, there is contradiction.
 \end{proof}
 \begin{ex}
+(i) If $P(A_n) \to 0$ and $\sum_{n = 1}^\infty P(A_n^c \cap A_{n+1}) < \infty$ then $P(A_n, i.o.) = 0$. (ii) Find an example of a sequence $A_n$ to which the result in (i) can be applied but the Borel - Cantelli lemma cannot.
 \end{ex}
-\begin{ex}
+\begin{proof}[sol]
+\begin{enumerate}
+	\item[(i)] Let $B_n = A_n^c \cap A_{n+1}$. The partial sum of $P(B_n)$ goes to 0.
+	\begin{align*}
+	P(\bigcup_{n = m} A_i) &\le P(A_m) + \sum_{n = m} P(B_i) \to 0 \text{ as } n \to \infty\\
+	P(\limsup A_n) &= \inf P(\bigcup_{n = m} A_i) = 0
+	\end{align*}
+	
+	\item[(ii)]
+	Let $A_n := [0, n^{-1}]$. Then the lemma can not be applied since $\sum P(A_n) = \infty$. However, $P(A_n) \to 0, P(A_n^c \cap A_{n+1}) \to 0$.
+\end{enumerate}
+\end{proof}
+\begin{ex}[Kochen-Stone lemma]
+Suppose $\sum P(A_k) = \infty$. Use Exercieses 1.6.6 and 2.3.1 to show that if 
+\[\limsup_{n\to\infty} \bigg(\sum_{k=1}^n P(A_k)\bigg)^2 \bigg/ \bigg(\sum_{1\le j,k\le n}P(A_j \cap A_k)\bigg) = \alpha > 0\]
+then $P(A_n, i.o.) \ge \alpha$. The case $\alpha = 1$ contains Theorem 2.3.7
 \end{ex}
+\begin{proof}[sol]
+Define $X_n := \sum_{i=1}^n 1\{A_i\}$ Then, $EX_n = \sum_{i=1}^n P(A_i), EX_n^2 = \sum_{1\le i,j \le n}P(A_i \cap A_j)$. By exercise 1.6.6.
+\[P(X_n \ge 0) \ge (EX_n)^2/EX_n^2 \Rightarrow \limsup P(X_n \ge 0) \ge \limsup  (EX_n)^2/EX_n^2 = \alpha\]
+
+\end{proof}
 \begin{ex}
 Let $X_1,X_2,...$ be independent with $P(X_n = 1) = p_n$ and $P(X_n = 0) = 1 - p_n$. Show that (i) $X_n \to 0$ in probability if and only if $p_n \to 0$, and (ii) $X_n \to 0$ a.s. if and only if $\sum p_n < \infty$.
 \end{ex}
@@ -1116,9 +1211,56 @@ Thus, $X_n \to 0 \Leftrightarrow p_n \to 0$.
 $X_n \to 0$ a.s. implies, for some $N$, $X_n = 0$ if $n > N$. Thus, $\sum_n p_n = \sum_{n=1}^N p_n <\infty$.
 
 ($\Leftarrow$)
-$\sum p_n < \infty \Rightarriw$ for some $N$, $p_n = 0$ if $n > N$. Thus $X_n \to 0$ a.s.
+$\sum p_n < \infty \Rightarrow$ for some $N$, $p_n = 0$ if $n > N$. Thus $X_n \to 0$ a.s.
 \end{enumerate}
 \end{proof}
+\begin{ex}
+Let $X_1,X_2,...$ be a sequence of r.v.'s on $(\Omega, \mathcal{F}, P)$ where $\Omega$ is a countable set and $\mathcal F$ consists of all subsets of $\Omega$. Show that $X_n \to X$ in probability implies $X_n \to X$ a.s.
+\end{ex}
+\begin{proof}[sol]
+Since $\Omega$ is countable, the image of a random variable is countable. And all subsets are measurable by assumption. For every $\epsilon >0 $, 
+\[\lim P(|X_n - X| < \epsilon ) = 1\]
+Thus, for any $\omega \in \Omega$, $|X_n(\omega) - X(\omega)| < \epsilon$. This implies $X_n \to X$ a.s.
+\end{proof}
+\begin{ex}
+If $X_n$ is any sequence of random variables, there are constants $c_n \to \infty$ so that $X_n / c_n \to 0$ a.s.
+\end{ex}
+\begin{proof}[sol]
+For  every $\epsilon > 0$, choose $m$ s.t. $\epsilon < 2^{-m}$. Choose $c_n$ satisties that $P(X_n > c_n2^{-n}) \le 2^{-n}$. Then $\sum P(X_n / c_n > \epsilon) < \sum P(X_n / c_n > 2^{-m}) < \infty$. Thus, $P(\limsup X_n / c_n > 0) = 0$.
+\end{proof}
+\begin{ex}
+Let $X_1,X_2,...$ be independent. Show that $\sup X_n < \infty$ a.s. if and only if $\sum_n P(X_n > A) < \infty$ for some $A$.
+\end{ex}
+\begin{proof}[sol]~\
+\begin{enumerate}
+	\item[($\Rightarrow$)] Let $A > \sup X_n$. Then $\sum P(X_n > A) = 0$.
+	\item[($\Leftarrow$)] $\sum P(X_n > A) < \infty \Rightarrow P(\limsup X_n > A) = 0$. Thus $\sup X_n < \infty$ a.s.
+\end{enumerate}
+\end{proof}
+\begin{ex}
+Let $X_1, X_2,...$ be i.i.d. with $P(X_i > x)  = e^{-x}$, let $M_n = \max_{1\le m \le n} X_m$. Show that (i) $\limsup_{x\to\infty} X_n / \log n = 1$ a.s. and (ii) $M_n / \log n \to 1$ a.s.
+\end{ex}
+\begin{proof}[sol]~\
+\begin{enumerate}
+\item[(i)] $P(X_n \ge \log n) = 1/n \Rightarrow \sum P(X_n \ge \log n) = \infty$. Thus $P(X_n/\log n \ge 1\ i.o.) = 1$.However, for any $\epsilon > 0$, $P(X_n \ge (1 + \epsilon )\log n) = n^{-1-\epsilon}$. Thus the sum of probability is 0. Then $P( X_n/\log n \ge 1 + \epsilon\ i.o.) = 0$.
+\item[(ii)] By (i), $M_n \le (1+\epsilon)\log n \Rightarrow \limsup M_n/\log n \le 1$.
+\begin{align*}
+P(M_n < (1-\epsilon)\log n) &= (1 - n^{-1+\epsilon})^n\\
+&\le \exp(-n^\epsilon)
+\end{align*}
+Thus, by Borel Cantelli, $P(M_n < (1-\epsilon)\log n\ i.o.) = 0 \Rightarrow \liminf M_n/\log n \ge 1$.
+\end{enumerate}
+\end{proof}
+\begin{ex}
+\end{ex}
+\begin{ex}
+\end{ex}
+\begin{ex}
+\end{ex}
+\begin{ex}
+\end{ex}
+\begin{ex}
+\end{ex}
 \end{document}
 
 
