@@ -1252,6 +1252,92 @@ Thus, by Borel Cantelli, $P(M_n < (1-\epsilon)\log n\ i.o.) = 0 \Rightarrow \lim
 \end{enumerate}
 \end{proof}
 \begin{ex}
+Let $X_1,X_2,...$ be i.i.d. with distribution $F$, let $\lambda_n \uparrow \infty$, and let $A_n = \{\max_{1\le m\le n} X_m \lambda_n\}$. Show that $P(A_n \ i.o.) = 0$ or 1 according as $\sum_{n \ge 1} (1 - F(\lambda_n)) < \infty$ or $ = \infty$.
+\end{ex}
+\begin{proof}
+By Borel Cantelli lemma, $\sum_{n \ge 1} (1 - F(\lambda_n)) < \infty$ implies $P(X_n > \lambda_n \ i.o.) = 0$. Thus, $P(A_n\ i.o.) = 0$. Otherwise, $\sum_{n \ge 1} (1 - F(\lambda_n)) = \infty$ implies $P(X_n > \lambda_n \ i.o.) = 1$ by second Borel Cantelli lemma. Thus, $P(A_n\ i.o.) = 1$.
+\end{proof}
+\begin{ex}
+Let $Y_1,Y_2,...$ be i.i.d. Find necessary and sufficient conditions for
+\begin{enumerate}
+\item[(i)] $Y_n / n\to 0$ almost surely
+\item[(ii)] $(\max_{m\le n} Y_m)/n \to 0$ almost surely
+\item[(iii)] $(\max_{m\le n} Y_m)/n \to 0$ in probability
+\item[(iv)] $Y_n/n \to 0$ in probability
+\end{enumerate}
+\end{ex}
+\begin{ex}
+Let $0 \le X_1 \le X_2 ...$ be random variables with $EX_n \sim an^\alpha$ with $a, \alpha > 0$, and var$(X_n) \le Bn^\beta$ with $\beta < 2\alpha$. Show that $X_n / n^\alpha \to a$ a.s.
+\end{ex}
+\begin{proof}[sol]
+Let $Y_n := X_n /n^\alpha$. Then $EY_n \sim \alpha$ and var$(Y_n) \le Bn^{\beta - 2\alpha}$. By Chebyshev,
+\[P(|Y_n - a| > \epsilon) \le Var(Y_n)/\epsilon^2\]
+Since the right term is summable, $P(|Y_n - a| > \epsilon, \ i.o.) = 1$. Thus $X_nn / n^\alpha \to a$ a.s.
+\end{proof}
+\begin{ex}
+Let $X_n$ be independent Poisson r.v.'s with $EX_n = \lambda_n$, and let $S_n = X_1 + \dotsb + X_n$. Show that if $\sum\lambda_n = \infty$ then $S_n/ES_n \to 1$. a.s.
+\end{ex}
+\begin{proof}[sol]
+Var$(S_n)$ = $\sum$ Var($X_n$) = $\sum \lambda_n$.
+\[P(|S_n /ES_n - 1| > \epsilon) \le \epsilon^{-2}/\sum\lambda_n\]
+\end{proof}
+\begin{ex}
+Show that if $X_n$ is the outcome of the $n$th play of the St.Petersberg game (Example 2.2.16) then $\limsup_{n\to\infty} X_n/ (n\log_2 n) = \infty$ a.s. and hence the same result holds for $S_n$. This shows that the convergence $S_n / (n\log_2 n) \to 1$ in probability proved in Section 2.2. does not occur a.s.
+\end{ex}
+
+\section{Strong Law of Large Numbers}
+\begin{ex}[Lazy janitor]
+Suppose the $i$th light bulb burns for an amount of time $X_i$ and then remains burned out for time $Y_i$ before being replaced. Suppose the $X_i, Y_i$ are positive and independent with the $X$’s having distribution $F$ and the $Y$’s having distribution $G$, both of which have finite mean. Let $R_t$ be the amount of time in $[0, t]$ that we have a working light bulb. Show that $R_t/t \to EX_i/(EX_i + EY_i)$ almost surely.
+\end{ex}
+\begin{proof}[sol]
+Let $\underbar R_t = \sum_{n \le N(t)}X_n, \bar R_t = \sum_{n \le N(t) + 1}X_n$ Then, $\underbar R_t \le R_t \le \bar R_t$. SLLN implies
+\[\lim \underbar R_t /N(t) = \lim \bar R_t / (N(t)  + 1) = EX_1 \ a.s.\]
+Also
+\[\lim N(t) / t = \lim (N(t) +1)/t = 1 /(EX_1  +EY_1)\ a.s. \]
+Thus,
+\[\lim\underbar R_t/t = \lim\bar R_t/t = EX_1  / (EX_1 + EY_1)\
+ a.s.\]
+Finally
+\[R_t/t \to EX_1  / (EX_1 + EY_1)\ a.s.\]
+\end{proof}
+\begin{ex}
+Let $X_0 = (1,0)$ and define $X_n \in \R^2$ inductively by declaring that $X_{n+1}$ is chosen at random from the ball of radius $|X_n|$ centered at the origin, i.e., $X_{n+1}/|X_n|$ is uniformly distributed on the ball of radius 1 and independent of $X_1,...,X_n$. Prove that $n^{-1}\log |X_n| \to c$ a.s. and compute $c$
+\end{ex}
+\begin{proof}[sol]
+By assumption $|X_1|, |X_2|/|X_1|, |X_3|/|X_2|,...$ have are i.i.d. with distribution $U$ which $P(U < u) = u^2$ for $u \in [0.1]$. Thus, $|X_n| = U_1U_2\dotsb U_n$. Then
+\[\frac{\log|X_n|}{n} = \frac{\sum_{m=1}^n \log U_m}{n} \to E \log U_m\]
+$E\log U_m = \int_0^1 2u\log udu = -1/2$. Thus, $c = -1/2$.
+\end{proof}
+\begin{ex}[Investment problem]
+We assume that at the beginning of each year totu can buy bonds for \$1 that are worth \$ $a$ at the end of the year or stocks that are worth a random amount $V \ge 0$. If you always invest a fixed proportion $p$ of yout wealth in bonds, then your wealth at the end of year $n+1$ is $W_{n+1} = (ap + (1-p)V_n)W_n$. Suppose $V_1,V_2,...$ are i.i.d. with $EV_n^2 < \infty$ and $E(V_n^{-2}) < \infty$. (i) Show that $n^{-1}\log W_n \to c(p)$ a.s. (ii) Show that $c(p)$ is concave. (iii) By investigating $c'(0)$ and $c'(1)$, give conditions on $V$ that guarantee that the optimal choice of $p$ is in (0,1). (iv) Suppose $P(V = 1) = P(V = 4) = 1/2$. Find the optimal $p$ as a function of $a$.
+\end{ex}
+\begin{proof}[sol]
+\begin{align*}
+\log W_{n+1} &= \log W_n + \log (ap + (1-p)V_n)\\
+&=\sum_{i=1}^n \log(ap + (1-p)V_b\\
+\intertext{By SLLN}
+\frac{\log W_n}{n} &\to E\log(ap + (1-p) V_1) \equiv c(p)
+\end{align*}
+Concavity of $c(p)$
+\begin{align*}
+c'(p) &=  E\bigg(\frac{a - V_1}{ap + (1-p)V_1}\bigg)\\
+c''(p) &= -E\bigg(\frac{((a-V_1)^2}{ap + (1-p)V_1)^2}\bigg)
+\end{align*}
+
+$c(p)$ is concave since $c$ is twice differentiable and second derivative is negative.
+
+To have a maximum in (0,1), $c'(0) > 0$ and $c'(1) < 0$. Thus,
+\[aEV_1^{-1} > 1, \ EV_1 > a\]
+
+Using above condition, optimal $p$ lies in (0,1) when $8/5 <a < 5/2$. Optimal $p$ satisfies $c'(p) = 0$. Thus, we can obtain that
+\[p^* = \frac{5a - 8}{-2a^2 +6a - 8}\]
+
+If $a \le 8/5$, then $p^* = 0$ and if $a \ge 5/2$, then $p^* =1$
+\end{proof}
+
+\section{Convergence of Random Series$^*$}
+\begin{ex}
+Suppose $X_1,X_2,...$ are i.i.d. with $EX_i = 0$, var$(X_i) = C <\infty$. Use Theorem 2.5.5 with $n = m^\alpha$ where $\alpha(2p - 1) > 1$ to conclude that if $S_n = X_1 + \dotsb + X_n$ and $p > 1/2$ then $S_n/n^p \to 0$ almost surely.
 \end{ex}
 \begin{ex}
 \end{ex}
@@ -1261,6 +1347,21 @@ Thus, by Borel Cantelli, $P(M_n < (1-\epsilon)\log n\ i.o.) = 0 \Rightarrow \lim
 \end{ex}
 \begin{ex}
 \end{ex}
+\begin{ex}
+\end{ex}
+\begin{ex}
+\end{ex}
+\begin{ex}
+\end{ex}
+\begin{ex}
+\end{ex}
+\begin{ex}
+\end{ex}
+\begin{ex}
+\end{ex}
+\begin{ex}
+\end{ex}
+
 \end{document}
 
 

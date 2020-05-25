@@ -10,3 +10,5 @@
 \contentsline {section}{\numberline {2.1}Independence}{16}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Weak Laws of Large Numbers}{20}{section.2.2}%
 \contentsline {section}{\numberline {2.3}Borel-Cantelli Lemmas}{23}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Strong Law of Large Numbers}{26}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Convergence of Random Series$^*$}{27}{section.2.5}%
