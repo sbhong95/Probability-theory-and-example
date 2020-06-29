@@ -12,7 +12,9 @@ Progress
 
 Undone exercises
 
+- Chapter 1 Section 3 : 8, 9
+- Chapter 1 Section 4 : 3 
 - Chapter 1 Section 7 : 5
-- Chapter 2 Section 2 : 8,9
+- Chapter 2 Section 2 : 8, 9 
 - Chapter 2 Section 3 : 17, 19, 20
 
