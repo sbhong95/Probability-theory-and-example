@@ -1,26 +1,26 @@
 \contentsline {chapter}{\numberline {1}Measure Theory}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Probability Spaces}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Distributions}{2}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Random Variables}{3}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Integration}{5}{section.1.4}%
-\contentsline {section}{\numberline {1.5}Properties of the integral}{6}{section.1.5}%
-\contentsline {section}{\numberline {1.6}Expected Value}{9}{section.1.6}%
-\contentsline {section}{\numberline {1.7}Product Measures, Fubini's Theorem}{13}{section.1.7}%
-\contentsline {chapter}{\numberline {2}Law of Large Numbers}{16}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Independence}{16}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Weak Laws of Large Numbers}{20}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Borel-Cantelli Lemmas}{23}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Strong Law of Large Numbers}{26}{section.2.4}%
-\contentsline {section}{\numberline {2.5}Convergence of Random Series$^*$}{27}{section.2.5}%
-\contentsline {section}{\numberline {2.6}Renewal Theory$^*$}{28}{section.2.6}%
-\contentsline {section}{\numberline {2.7}Large Deviations$^*$}{28}{section.2.7}%
-\contentsline {chapter}{\numberline {3}Central Limit Theorems}{29}{chapter.3}%
-\contentsline {section}{\numberline {3.1}The De Moivre-Laplace Theorem}{29}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Weak Convergence}{29}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Characteristic Functions}{29}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Centrel Limit Theorems}{29}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Local Limit Theorem$^*$}{29}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Poisson Processes}{29}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Stable Laws$^*$}{29}{section.3.7}%
-\contentsline {section}{\numberline {3.8}Infinitely Divisible Distributions$^*$}{29}{section.3.8}%
-\contentsline {section}{\numberline {3.9}Limit Theorems in $\mathbb R^d$}{29}{section.3.9}%
+\contentsline {section}{\numberline {1.3}Random Variables}{4}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Integration}{6}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Properties of the integral}{7}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Expected Value}{11}{section.1.6}%
+\contentsline {section}{\numberline {1.7}Product Measures, Fubini's Theorem}{15}{section.1.7}%
+\contentsline {chapter}{\numberline {2}Law of Large Numbers}{18}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Independence}{18}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Weak Laws of Large Numbers}{23}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Borel-Cantelli Lemmas}{26}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Strong Law of Large Numbers}{30}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Convergence of Random Series$^*$}{31}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Renewal Theory$^*$}{32}{section.2.6}%
+\contentsline {section}{\numberline {2.7}Large Deviations$^*$}{32}{section.2.7}%
+\contentsline {chapter}{\numberline {3}Central Limit Theorems}{33}{chapter.3}%
+\contentsline {section}{\numberline {3.1}The De Moivre-Laplace Theorem}{33}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Weak Convergence}{33}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Characteristic Functions}{33}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Centrel Limit Theorems}{33}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Local Limit Theorem$^*$}{33}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Poisson Processes}{33}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Stable Laws$^*$}{33}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Infinitely Divisible Distributions$^*$}{33}{section.3.8}%
+\contentsline {section}{\numberline {3.9}Limit Theorems in $\mathbb R^d$}{33}{section.3.9}%
